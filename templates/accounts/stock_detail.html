@@ -1,8 +1,17 @@
 {% if stock %}
-    <h1>{{ stock.name }}</h1>
-    <p>{{ stock.symbol }}</p>
-
+    <h1>{{ stock.symbol }}({{ stock.customer.name }})</h1>
+    <table>
+        <tr>
+            <th>Purchase Price</th>
+            <th>Number of Shares</th>
+            <th>Current Price</th>
+        </tr>
+        <tr>
+            <td>{{ stock.purchase_price }}</td>
+            <td>{{ stock.number_of_shares }}</td>
+            <td>{{ stock.current_price }}</td>
+        </tr>
+    </table>
 {% else %}
     <p>No stock found.</p>
-
 {% endif %}
