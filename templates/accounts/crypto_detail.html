@@ -5,11 +5,14 @@
             <th>Purchase Price</th>
             <th>Number of Coins</th>
             <th>Current Price</th>
+            <th>Current Value</th>
+            <th>Current Profit</th>
         </tr>
         <tr>
             <td>{{ crypto.purchase_price }}</td>
             <td>{{ crypto.number_of_coins }}</td>
             <td>{{ crypto.current_price }}</td>
+            <td>{{ crypto.current_value|floatformat:2 }}</td>
         </tr>
     </table>
 {% else %}
