@@ -13,6 +13,7 @@
             <td>{{ crypto.number_of_coins }}</td>
             <td>{{ crypto.current_price }}</td>
             <td>{{ crypto.current_value|floatformat:2 }}</td>
+            <td>{{ crypto.profit|floatformat:2 }}</td>
         </tr>
     </table>
 {% else %}

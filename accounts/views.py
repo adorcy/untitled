@@ -24,7 +24,9 @@ def stock_detail(request, stock_id):
 def crypto_detail(request, crypto_id):
     crypto = get_object_or_404(Cryptocurrency, pk=crypto_id)
     crypto.current_price = get_crypto_price(crypto.symbol)
+    crypto.original_value = crypto.purchase_price * crypto.number_of_coins
     crypto.current_value = crypto.current_price * crypto.number_of_coins
+    crypto.profit = crypto.current_value - crypto.original_value
     context = {'crypto': crypto}
     return render(request, 'accounts/crypto_detail.html', context)
 
