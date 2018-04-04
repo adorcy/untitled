@@ -13,3 +13,9 @@ class StockSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stock
         fields = ('symbol', 'number_of_shares', 'owner')
+
+class CryptoSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source='customer.name')
+    class Meta:
+        model = Cryptocurrency
+        fields = ('symbol', 'number_of_coins', 'owner')

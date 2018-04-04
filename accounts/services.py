@@ -5,3 +5,9 @@ def get_stock_price(symbol):
     r = requests.get(url)
     json_response = r.json()
     return json_response['quote']['latestPrice']
+
+def get_crypto_price(symbol):
+    url = f'https://min-api.cryptocompare.com/data/price?fsym={symbol}&tsyms=USD'
+    r = requests.get(url)
+    json_response = r.json()
+    return json_response['USD']

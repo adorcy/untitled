@@ -1,8 +1,17 @@
 {% if crypto %}
-    <h1>{{ crypto.name }}</h1>
-    <p>{{ crypto.symbol }}</p>
-
+    <h1>{{ crypto.symbol }}({{ crypto.customer.name }})</h1>
+    <table>
+        <tr>
+            <th>Purchase Price</th>
+            <th>Number of Coins</th>
+            <th>Current Price</th>
+        </tr>
+        <tr>
+            <td>{{ crypto.purchase_price }}</td>
+            <td>{{ crypto.number_of_coins }}</td>
+            <td>{{ crypto.current_price }}</td>
+        </tr>
+    </table>
 {% else %}
-    <p>No crypto found.</p>
-
+    <p>No cryptocurrency found.</p>
 {% endif %}
