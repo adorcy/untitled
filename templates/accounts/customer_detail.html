@@ -3,12 +3,10 @@
     <p><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></p>
     <ul>
         {% for stock in customer.stock_set.all %}
-            <li>{{ stock.symbol }}: {{ stock.number_of_shares }}</li>
-        {% endfor %}
-    </ul>
-    <ul>
-        {% for crypto in customer.cryptocurrency_set.all %}
-            <li>{{ crypto.symbol }}: {{ crypto.number_of_coins }}</li>
+            <tr>
+                <td><a href="{% url 'stock' stock.id %}">{{ stock.symbol }}</a></td>
+                <td>{{ stock.number_of_shares }}</td>
+            </tr>
         {% endfor %}
     </ul>
 {% else %}
