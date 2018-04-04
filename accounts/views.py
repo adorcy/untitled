@@ -18,6 +18,9 @@ def customer_detail(request, customer_id):
 def stock_detail(request, stock_id):
     stock = get_object_or_404(Stock, pk=stock_id)
     stock.current_price = get_stock_price(stock.symbol)
+    stock.original_value = stock.purchase_price * stock.number_of_shares
+    stock.current_value = stock.current_price * stock.number_of_shares
+    stock.profit = stock.current_value - stock.original_value
     context = {'stock': stock}
     return render(request, 'accounts/stock_detail.html', context)
 

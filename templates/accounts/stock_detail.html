@@ -5,11 +5,15 @@
             <th>Purchase Price</th>
             <th>Number of Shares</th>
             <th>Current Price</th>
+            <th>Current Value</th>
+            <th>Current Profit</th>
         </tr>
         <tr>
             <td>{{ stock.purchase_price }}</td>
             <td>{{ stock.number_of_shares }}</td>
             <td>{{ stock.current_price }}</td>
+            <td>{{ stock.current_value|floatformat:2 }}</td>
+            <td>{{ stock.profit|floatformat:2 }}</td>
         </tr>
     </table>
 {% else %}
