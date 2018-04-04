@@ -2,12 +2,22 @@
     <h1>{{ customer.name }}</h1>
     <p><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></p>
     <ul>
+        <h1>Stocks</h1>
         {% for stock in customer.stock_set.all %}
             <tr>
                 <td><a href="{% url 'stock' stock.id %}">{{ stock.symbol }}</a></td>
-                <td>{{ stock.number_of_shares }}</td>
+                <td>{{ stock.number_of_shares }}</td><br>
             </tr>
         {% endfor %}
+    </ul>
+    <ul>
+        <h1>Cryptocurrencies</h1>
+        {% for crypto in customer.cryptocurrency_set.all %}
+           <tr>
+               <td><a href="{% url 'crypto' crypto.id %}">{{ crypto.symbol }}</a></td>
+               <td>{{ crypto.number_of_coins }}</td>
+           </tr><br>
+       {% endfor %}
     </ul>
 {% else %}
     <p>No customer found.</p>
