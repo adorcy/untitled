@@ -7,6 +7,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'customers', views.CustomerViewSet)
 router.register(r'stocks', views.StockViewSet)
+router.register(r'cryptocurrency', views.CryptocurrencyViewSet)
 
 urlpatterns =[
     url(r'^$', views.index, name='index'),

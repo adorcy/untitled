@@ -5,17 +5,17 @@ from rest_framework import serializers
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Customer
-        fields = ('name', 'email', 'stock_set')
+        fields = ('name', 'email', 'phone', 'street', 'city', 'state', 'zip', 'stock_set', 'cryptocurrency_set')
 
 
 class StockSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='customer.name')
     class Meta:
         model = Stock
-        fields = ('symbol', 'number_of_shares', 'owner')
+        fields = ('name', 'symbol', 'purchase_price', 'number_of_shares', 'owner', 'date_purchased')
 
 class CryptoSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='customer.name')
     class Meta:
         model = Cryptocurrency
-        fields = ('symbol', 'number_of_coins', 'owner')
+        fields = ('name', 'symbol', 'purchase_price', 'number_of_coins', 'owner', 'date_purchased')
