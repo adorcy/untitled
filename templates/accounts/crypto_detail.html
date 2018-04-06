@@ -1,5 +1,6 @@
 {% if crypto %}
     <h1>{{ crypto.symbol }}({{ crypto.customer.name }})</h1>
+    <h2>{{ crypto.name }}</h2>
     <table>
         <tr>
             <th>Purchase Price</th>
@@ -16,6 +17,9 @@
             <td>{{ crypto.profit|floatformat:2 }}</td>
         </tr>
     </table>
+    <button><a href="{% url 'crypto_edit' crypto.id %}">Edit</a></button>
+    <button><a href="{% url 'customer' crypto.customer.id %}">Return</a></button>
 {% else %}
     <p>No cryptocurrency found.</p>
 {% endif %}
+

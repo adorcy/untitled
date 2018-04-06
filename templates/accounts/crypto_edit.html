@@ -1,0 +1,12 @@
+    <html>
+        <head>
+            <title>Cryptocurrency Info</title>
+        </head>
+        <body>
+             <h1>Cryptocurrency Info</h1>
+             <form method="POST" class="cryptocurrency-form">{% csrf_token %}
+                 {{ form.as_p }}
+                 <button type="submit">Save</button>
+             </form>
+        </body>
+    </html>

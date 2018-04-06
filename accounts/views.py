@@ -4,6 +4,9 @@ from .models import Customer, Stock, Cryptocurrency
 from rest_framework import viewsets
 from .serializers import CustomerSerializer, StockSerializer, CryptoSerializer
 from .services import get_stock_price, get_crypto_price
+from .forms import CryptocurrencyForm, CustomerForm, StockForm
+from django.shortcuts import redirect
+from django.utils import timezone
 
 def index(request):
     customer_list = Customer.objects.all()
@@ -32,6 +35,20 @@ def crypto_detail(request, crypto_id):
     crypto.profit = crypto.current_value - crypto.original_value
     context = {'crypto': crypto}
     return render(request, 'accounts/crypto_detail.html', context)
+
+def crypto_edit(request, crypto_id):
+    crypto = get_object_or_404(Cryptocurrency, pk = crypto_id)
+    if request.method =="POST":
+        form = CryptocurrencyForm(request.POST, instance=crypto)
+        if form.is_valid():
+            crypto = form.save(commit=False)
+            crypto.modified = timezone.now()
+            crypto.save()
+            return redirect('crypto', crypto_id=crypto_id)
+    else:
+        form = CryptocurrencyForm(instance=crypto)
+    return render(request, 'accounts/crypto_edit.html', {'form': form})
+
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
