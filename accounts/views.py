@@ -49,6 +49,36 @@ def crypto_edit(request, crypto_id):
         form = CryptocurrencyForm(instance=crypto)
     return render(request, 'accounts/crypto_edit.html', {'form': form})
 
+def stock_edit(request, stock_id):
+    stock = get_object_or_404(Stock, pk = stock_id)
+    if request.method =="POST":
+        form = StockForm(request.POST, instance=stock)
+        if form.is_valid():
+            stock = form.save(commit=False)
+            stock.modified = timezone.now()
+            stock.save()
+            return redirect('stock', stock_id=stock_id)
+    else:
+        form = StockForm(instance=stock)
+    return render(request, 'accounts/stock_edit.html', {'form': form})
+
+def customer_edit(request, customer_id):
+    customer = get_object_or_404(Customer, pk = customer_id)
+    if request.method =="POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.modified = timezone.now()
+            customer.save()
+            return redirect('customer', customer_id=customer_id)
+    else:
+        form = CustomerForm(instance=customer)
+    return render(request, 'accounts/customer_edit.html', {'form': form})
+
+def customer_delete(request, customer_id):
+    instance = Customer.objects.get(id=customer_id)
+    instance.delete()
+    return redirect('index')
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()

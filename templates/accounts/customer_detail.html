@@ -33,6 +33,9 @@
                 {% endfor %}
             </table>
     </ul>
+    <button><a href="{% url 'customer_edit' customer.id %}">Edit</a></button>
+    <button><a href="{% url 'index'  %}">Return</a></button>
+    <button><a href="{% url 'customer_delete'  customer.id %}">Delete</a></button>
 {% else %}
     <p>No customer found.</p>
 

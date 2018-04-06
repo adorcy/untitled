@@ -16,6 +16,8 @@
             <td>{{ stock.profit|floatformat:2 }}</td>
         </tr>
     </table>
+    <button><a href="{% url 'stock_edit' stock.id %}">Edit</a></button>
+    <button><a href="{% url 'customer' stock.customer.id %}">Return</a></button>
 {% else %}
     <p>No stock found.</p>
 {% endif %}
