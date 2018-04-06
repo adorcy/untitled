@@ -11,6 +11,9 @@ router.register(r'cryptocurrency', views.CryptocurrencyViewSet)
 
 urlpatterns =[
     url(r'^$', views.index, name='index'),
+    url(r'^customer/new/$', views.customer_new, name='customer_new'),
+    url(r'^stock/new/$', views.stock_new, name='stock_new'),
+    url(r'^crypto/new/$', views.crypto_new, name='crypto_new'),
     url(r'^(?P<customer_id>[0-9]+)/$', views.customer_detail, name='customer'),
     url(r'^(?P<customer_id>[0-9]+)/edit/$', views.customer_edit, name='customer_edit'),
     url(r'^(?P<customer_id>[0-9]+)/delete$', views.customer_delete, name='customer_delete'),

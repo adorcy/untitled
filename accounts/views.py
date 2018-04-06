@@ -83,12 +83,50 @@ def customer_delete(request, customer_id):
 def stock_delete(request, stock_id):
     instance = Stock.objects.get(id=stock_id)
     instance.delete()
-    return redirect('index')
+    return redirect('customer', customer_id=instance.customer.id)
 
 def crypto_delete(request, crypto_id):
     instance = Cryptocurrency.objects.get(id=crypto_id)
     instance.delete()
-    return redirect('index')
+    return redirect('customer', customer_id=instance.customer.id)
+
+def customer_new(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.created = timezone.now()
+            customer.save()
+            return redirect('customer', customer_id=customer.pk)
+    else:
+        form = CustomerForm()
+    return render(request, 'accounts/customer_edit.html', {'form': form})
+
+def stock_new(request):
+    if request.method == "POST":
+        form = StockForm(request.POST)
+        if form.is_valid():
+            stock = form.save(commit=False)
+            stock.created = timezone.now()
+            stock.date_purchased = timezone.now()
+            stock.save()
+            return redirect('stock', stock_id=stock.pk)
+    else:
+        form = StockForm()
+    return render(request, 'accounts/stock_edit.html', {'form': form})
+
+def crypto_new(request):
+    if request.method == "POST":
+        form = CryptocurrencyForm(request.POST)
+        if form.is_valid():
+            crypto = form.save(commit=False)
+            crypto.created = timezone.now()
+            crypto.date_purchased = timezone.now()
+            crypto.save()
+            return redirect('crypto', crypto_id=crypto.pk)
+    else:
+        form = CryptocurrencyForm()
+    return render(request, 'accounts/stock_edit.html', {'form': form})
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()

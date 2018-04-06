@@ -21,6 +21,7 @@
                 {% endfor %}
             </table>
     </ul>
+    <button><a href="{% url 'stock_new' %}">Add Stock</a></button>
     <ul>
         <h1>Cryptocurrencies</h1>
             <table>
@@ -36,7 +37,7 @@
                 {% endfor %}
             </table>
     </ul>
-
+        <button><a href="{% url 'crypto_new' %}">Add Coin</a></button>
 {% else %}
     <p>No customer found.</p>
 
