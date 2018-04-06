@@ -80,6 +80,16 @@ def customer_delete(request, customer_id):
     instance.delete()
     return redirect('index')
 
+def stock_delete(request, stock_id):
+    instance = Stock.objects.get(id=stock_id)
+    instance.delete()
+    return redirect('index')
+
+def crypto_delete(request, crypto_id):
+    instance = Cryptocurrency.objects.get(id=crypto_id)
+    instance.delete()
+    return redirect('index')
+
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer

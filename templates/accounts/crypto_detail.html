@@ -19,6 +19,7 @@
     </table>
     <button><a href="{% url 'crypto_edit' crypto.id %}">Edit</a></button>
     <button><a href="{% url 'customer' crypto.customer.id %}">Return</a></button>
+    <button><a href="{% url 'crypto_delete'  crypto.id %}">Delete</a></button>
 {% else %}
     <p>No cryptocurrency found.</p>
 {% endif %}

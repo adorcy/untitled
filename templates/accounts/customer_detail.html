@@ -3,6 +3,9 @@
     <p><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></p>
     <p>{{ customer.phone }}</p>
     <p>{{ customer.street }} {{ customer.city }}, {{ customer.state }} {{ customer.zip }}</p>
+    <button><a href="{% url 'customer_edit' customer.id %}">Edit</a></button>
+    <button><a href="{% url 'index'  %}">Return</a></button>
+    <button><a href="{% url 'customer_delete'  customer.id %}">Delete</a></button>
     <ul>
         <h1>Stocks</h1>
             <table>
@@ -33,9 +36,7 @@
                 {% endfor %}
             </table>
     </ul>
-    <button><a href="{% url 'customer_edit' customer.id %}">Edit</a></button>
-    <button><a href="{% url 'index'  %}">Return</a></button>
-    <button><a href="{% url 'customer_delete'  customer.id %}">Delete</a></button>
+
 {% else %}
     <p>No customer found.</p>
 

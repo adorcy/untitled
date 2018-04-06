@@ -18,6 +18,7 @@
     </table>
     <button><a href="{% url 'stock_edit' stock.id %}">Edit</a></button>
     <button><a href="{% url 'customer' stock.customer.id %}">Return</a></button>
+    <button><a href="{% url 'stock_delete'  stock.id %}">Delete</a></button>
 {% else %}
     <p>No stock found.</p>
 {% endif %}
