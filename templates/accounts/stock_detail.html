@@ -1,24 +1,28 @@
-{% if stock %}
-    <h1>{{ stock.symbol }}({{ stock.customer.name }})</h1>
-    <table>
-        <tr>
-            <th>Purchase Price</th>
-            <th>Number of Shares</th>
-            <th>Current Price</th>
-            <th>Current Value</th>
-            <th>Current Profit</th>
-        </tr>
-        <tr>
-            <td>{{ stock.purchase_price }}</td>
-            <td>{{ stock.number_of_shares }}</td>
-            <td>{{ stock.current_price }}</td>
-            <td>{{ stock.current_value|floatformat:2 }}</td>
-            <td>{{ stock.profit|floatformat:2 }}</td>
-        </tr>
-    </table>
-    <button><a href="{% url 'stock_edit' stock.id %}">Edit</a></button>
-    <button><a href="{% url 'customer' stock.customer.id %}">Return</a></button>
-    <button><a href="{% url 'stock_delete'  stock.id %}">Delete</a></button>
-{% else %}
-    <p>No stock found.</p>
-{% endif %}
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+    {% if stock %}
+        <h1>{{ stock.symbol }}({{ stock.customer.name }})</h1>
+        <table class= 'table table-striped'>
+            <tr>
+                <th>Purchase Price</th>
+                <th>Number of Shares</th>
+                <th>Current Price</th>
+                <th>Current Value</th>
+                <th>Current Profit</th>
+            </tr>
+            <tr>
+                <td>{{ stock.purchase_price }}</td>
+                <td>{{ stock.number_of_shares }}</td>
+                <td>{{ stock.current_price }}</td>
+                <td>{{ stock.current_value|floatformat:2 }}</td>
+                <td>{{ stock.profit|floatformat:2 }}</td>
+            </tr>
+        </table>
+        <button type="button" class="btn btn-outline-primary"><a href="{% url 'customer' stock.customer.id %}">Return</a></button>
+        <button type="button" class="btn btn-outline-warning"><a href="{% url 'stock_edit' stock.id %}">Edit</a></button>
+        <button type="button" class="btn btn-outline-danger"><a href="{% url 'stock_delete'  stock.id %}">Delete</a></button>
+    {% else %}
+        <p>No stock found.</p>
+    {% endif %}
+{% endblock %}

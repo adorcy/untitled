@@ -1,12 +1,16 @@
-{% if customer_list %}
+{% extends 'accounts/base.html' %}
 
-    <ul>
-        {% for customer in customer_list %}
-            <li><a href="/accounts/{{ customer.id }}/">{{  customer.name }}</a></li>
-        {% endfor %}
-    </ul>
+{% block content %}
+    {% if customer_list %}
 
-{% else %}
-    <p>No customer information available.</p>
-{% endif %}
-<button><a href="{% url 'customer_new' %}">Add Customer</a></button>
+        <ul>
+            {% for customer in customer_list %}
+                <li><a href="/accounts/{{ customer.id }}/">{{  customer.name }}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>No customer information available.</p>
+    {% endif %}
+    <button type="button" class="btn btn-outline-primary"><a href="{% url 'customer_new' %}">Add Customer</a></button>
+{% endblock %}

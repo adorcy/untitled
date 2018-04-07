@@ -1,14 +1,17 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
 {% if customer %}
     <h1>{{ customer.name }}</h1>
     <p><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></p>
     <p>{{ customer.phone }}</p>
     <p>{{ customer.street }} {{ customer.city }}, {{ customer.state }} {{ customer.zip }}</p>
-    <button><a href="{% url 'customer_edit' customer.id %}">Edit</a></button>
-    <button><a href="{% url 'index'  %}">Return</a></button>
-    <button><a href="{% url 'customer_delete'  customer.id %}">Delete</a></button>
+    <button type="button" class="btn btn-outline-primary"><a href="{% url 'index'  %}">Return</a></button>
+     <button type="button" class="btn btn-outline-warning"><a href="{% url 'customer_edit' customer.id %}">Edit</a></button>
+    <button type="button" class="btn btn-outline-danger"><a href="{% url 'customer_delete'  customer.id %}">Delete</a></button>
     <ul>
         <h1>Stocks</h1>
-            <table>
+            <table class= 'table table-striped'>
                 <tr>
                     <th>Stock Symbol</th>
                     <th>Number of Shares Purchased</th>
@@ -17,14 +20,15 @@
                 <tr>
                     <td><a href="{% url 'stock' stock.id %}">{{ stock.symbol }}</a></td>
                     <td>{{ stock.number_of_shares }}</td><br>
+                    <td>{{ crypto.number_of_coins_purchased }}</td><br>
                 </tr>
                 {% endfor %}
             </table>
     </ul>
-    <button><a href="{% url 'stock_new' %}">Add Stock</a></button>
+    <button type="button" class="btn btn-outline-primary"><a href="{% url 'stock_new' %}">Add Stock</a></button>
     <ul>
         <h1>Cryptocurrencies</h1>
-            <table>
+            <table class= 'table table-striped'>
                 <tr>
                     <th>Crypto Symbol</th>
                     <th>Number of Coins Purchased</th>
@@ -37,8 +41,9 @@
                 {% endfor %}
             </table>
     </ul>
-        <button><a href="{% url 'crypto_new' %}">Add Coin</a></button>
-{% else %}
+        <button type="button" class="btn btn-outline-primary"><a href="{% url 'crypto_new' %}">Add Coin</a></button>
+    {% else %}
     <p>No customer found.</p>
 
-{% endif %}
+    {% endif %}
+{% endblock %}

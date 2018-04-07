@@ -1,3 +1,6 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
     <html>
         <head>
             <title>Cryptocurrency Info</title>
@@ -6,7 +9,11 @@
              <h1>Cryptocurrency Info</h1>
              <form method="POST" class="cryptocurrency-form">{% csrf_token %}
                  {{ form.as_p }}
-                 <button type="submit">Save</button>
+                 <p>
+                    Enter date as: "YYYY-MM-DD HH:MM:SS" using military time, or leave blank to enter the current time.
+                 </p>
+                 <button type="submit" class="btn btn-outline-success">Save</button>
              </form>
         </body>
     </html>
+{% endblock %}

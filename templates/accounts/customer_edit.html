@@ -1,4 +1,7 @@
-<html>
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+    <html>
     <head>
         <title>Customer Info</title>
     </head>
@@ -6,7 +9,8 @@
          <h1>Customer Info</h1>
          <form method="POST" class="customer-form">{% csrf_token %}
              {{ form.as_p }}
-             <button type="submit">Save</button>
+             <button type="submit" class="btn btn-outline-success">Save</button>
          </form>
     </body>
-</html>
+    </html>
+{% endblock %}

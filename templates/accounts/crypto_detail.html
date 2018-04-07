@@ -1,26 +1,29 @@
-{% if crypto %}
-    <h1>{{ crypto.symbol }}({{ crypto.customer.name }})</h1>
-    <h2>{{ crypto.name }}</h2>
-    <table>
-        <tr>
-            <th>Purchase Price</th>
-            <th>Number of Coins</th>
-            <th>Current Price</th>
-            <th>Current Value</th>
-            <th>Current Profit</th>
-        </tr>
-        <tr>
-            <td>{{ crypto.purchase_price }}</td>
-            <td>{{ crypto.number_of_coins }}</td>
-            <td>{{ crypto.current_price }}</td>
-            <td>{{ crypto.current_value|floatformat:2 }}</td>
-            <td>{{ crypto.profit|floatformat:2 }}</td>
-        </tr>
-    </table>
-    <button><a href="{% url 'crypto_edit' crypto.id %}">Edit</a></button>
-    <button><a href="{% url 'customer' crypto.customer.id %}">Return</a></button>
-    <button><a href="{% url 'crypto_delete'  crypto.id %}">Delete</a></button>
-{% else %}
-    <p>No cryptocurrency found.</p>
-{% endif %}
+{% extends 'accounts/base.html' %}
 
+{% block content %}
+    {% if crypto %}
+        <h2>{{ crypto.symbol }}({{ crypto.customer.name }})</h2>
+        <h2>{{ crypto.name }}</h2>
+        <table class= 'table table-striped'>
+            <tr>
+                <th>Purchase Price</th>
+                <th>Number of Coins</th>
+                <th>Current Price</th>
+                <th>Current Value</th>
+                <th>Current Profit</th>
+            </tr>
+            <tr>
+                <td>{{ crypto.purchase_price }}</td>
+                <td>{{ crypto.number_of_coins }}</td>
+                <td>{{ crypto.current_price }}</td>
+                <td>{{ crypto.current_value|floatformat:2 }}</td>
+                <td>{{ crypto.profit|floatformat:2 }}</td>
+            </tr>
+        </table>
+        <button type="button" class="btn btn-outline-primary"><a href="{% url 'customer' crypto.customer.id %}">Return</a></button>
+        <button type="button" class="btn btn-outline-warning"><a href="{% url 'crypto_edit' crypto.id %}">Edit</a></button>
+        <button type="button" class="btn btn-outline-danger"><a href="{% url 'crypto_delete'  crypto.id %}">Delete</a></button>
+    {% else %}
+        <p>No cryptocurrency found.</p>
+    {% endif %}
+{% endblock %}
