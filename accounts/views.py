@@ -34,11 +34,6 @@ def crypto_detail(request, crypto_id):
     crypto.current_value = crypto.current_price * crypto.number_of_coins
     crypto.profit = crypto.current_value - crypto.original_value
     context = {'crypto': crypto}
-
-    def profit():
-        profit=crypto.profit
-        return profit
-
     return render(request, 'accounts/crypto_detail.html', context)
 
 def crypto_edit(request, crypto_id):
