@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 <<<<<<< HEAD
+<<<<<<< HEAD
     'accounts.apps.AccountsConfig',
+=======
+>>>>>>> parent of 34e0798... Change order
 =======
 >>>>>>> parent of 34e0798... Change order
 ]
