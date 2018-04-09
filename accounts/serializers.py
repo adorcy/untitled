@@ -1,5 +1,5 @@
 from .models import Customer, Stock, Cryptocurrency
-#from rest_framework import serializers
+from rest_framework import serializers
 
 
 class CustomerSerializer(serializers.HyperlinkedModelSerializer):

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Customer, Stock, Cryptocurrency
-#from rest_framework import viewsets
+from rest_framework import viewsets
 from .serializers import CustomerSerializer, StockSerializer, CryptoSerializer
 from .services import get_stock_price, get_crypto_price
 from .forms import CryptocurrencyForm, CustomerForm, StockForm
